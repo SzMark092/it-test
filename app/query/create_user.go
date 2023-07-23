@@ -2,11 +2,12 @@ package query
 
 import (
 	"context"
+	"it-test/adapters/psql"
 	"it-test/pkg/logs"
 )
 
 type CreateUserRepository interface {
-	CreateUser(ctx context.Context) (int, error)
+	CreateUser(ctx context.Context) (*psql.User, error)
 }
 
 type CreateUserHandler struct {

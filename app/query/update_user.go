@@ -2,11 +2,12 @@ package query
 
 import (
 	"context"
+	"it-test/adapters/psql"
 	"it-test/pkg/logs"
 )
 
 type UpdateUserRepository interface {
-	UpdateUser(ctx context.Context) (int, error)
+	UpdateUser(ctx context.Context) (*psql.User, error)
 }
 
 type UpdateUserHandler struct {

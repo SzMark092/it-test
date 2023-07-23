@@ -2,11 +2,12 @@ package query
 
 import (
 	"context"
+	"it-test/adapters/psql"
 	"it-test/pkg/logs"
 )
 
 type GetUserListRepository interface {
-	GetUserList(ctx context.Context) (int, error)
+	GetUserList(ctx context.Context) ([]psql.User, error)
 }
 
 type GetUserListHandler struct {
