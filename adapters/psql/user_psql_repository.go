@@ -2,7 +2,6 @@ package psql
 
 import (
 	"context"
-
 	"github.com/go-pg/pg/v10"
 )
 
@@ -37,4 +36,37 @@ func (r *UserPSQLRepository) GetUserCount(
 		return 0, err
 	}
 	return count, nil
+}
+
+func (r *UserPSQLRepository) CreateUser(ctx context.Context, user User) (*User, error) {
+	_, err := r.db.WithContext(ctx).
+		Model(&user).
+		Returning("*").
+		Insert()
+	if err != nil {
+		return nil, err
+	}
+	return &user, nil
+}
+
+func (r *UserPSQLRepository) GetUsers(ctx context.Context) ([]User, error) {
+	users := []User{}
+	err := r.db.WithContext(ctx).
+		Model(&users).
+		Select()
+	if err != nil {
+		return nil, err
+	}
+	return users, nil
+}
+
+func (r *UserPSQLRepository) UpdateUser(ctx context.Context, user User) (*User, error) {
+	_, err := r.db.WithContext(ctx).
+		Model(&user).
+		Returning("*").
+		Update()
+	if err != nil {
+		return nil, err
+	}
+	return &user, nil
 }

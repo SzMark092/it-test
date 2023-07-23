@@ -12,7 +12,7 @@ import (
 
 func (h HTTPServer) PostUser(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
-	result, err := h.app.Queries.PostUser.Handle(ctx, &query.PostUser{})
+	result, err := h.app.Queries.CreateUser.Handle(ctx, &query.CreateUser{})
 	if err != nil {
 		httperr.InternalError(domain.ErrorInternalServerErrorLabel, getUserCount, uuid.NewString(), err, w, r)
 		return
@@ -36,7 +36,7 @@ func (h HTTPServer) GetUserList(w http.ResponseWriter, r *http.Request, params G
 
 func (h HTTPServer) UpdateUserDetails(w http.ResponseWriter, r *http.Request, id string) {
 	ctx := r.Context()
-	result, err := h.app.Queries.UpdateUserDetails.Handle(ctx, &query.UpdateUserDetails{})
+	result, err := h.app.Queries.UpdateUser.Handle(ctx, &query.UpdateUser{})
 	if err != nil {
 		httperr.InternalError(domain.ErrorInternalServerErrorLabel, getUserCount, uuid.NewString(), err, w, r)
 		return

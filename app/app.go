@@ -16,4 +16,7 @@ type Commands struct {
 
 type Queries struct {
 	GetUserCount *query.GetUserCountHandler
+	CreateUser   *query.CreateUserHandler
+	GetUserList  *query.GetUserListHandler
+	UpdateUser   *query.UpdateUserHandler
 }
